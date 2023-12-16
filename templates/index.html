@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+
+
+{% endblock %}
+
+
+
+{% block body %} 
+
+<form action="{{ url_for('getInfo')}}" method="post">
+    <label for="leagueid">League ID:</label>
+    <input type="text" id="leagueid" name="legue_id" placeholder="1234">
+    <label for="swid">swid:</label>
+    <input type="text" id="swidid" name="swid" placeholder="\{abcd\}">
+    <button type="submit">Submit</button>
+    
+
+{% endblock %}
