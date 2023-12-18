@@ -11,9 +11,18 @@
 
 <form action="{{ url_for('getInfo')}}" method="post">
     <label for="leagueid">League ID:</label>
-    <input type="text" id="leagueid" name="legue_id" placeholder="1234">
-    <label for="swid">swid:</label>
-    <input type="text" id="swidid" name="swid" placeholder="\{abcd\}">
+    <input type="number" id="leagueid" name="league" placeholder="1234">
+
+    <label for="swidid">swid:</label>
+    <input type="text" id="swidid" name="swid" placeholder="{abcd}">
+
+    <label for="yearid">Year:</label>
+    <input type="number" id="yearid" name="year" placeholder="2024">
+
+    <label for="espns2id">espn_s2:</label>
+    <input type="text" id="espns2id" name="espns2" placeholder="xxx">
+
+
     <button type="submit">Submit</button>
     
 
