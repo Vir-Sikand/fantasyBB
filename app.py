@@ -17,8 +17,6 @@ def getInfo() :
         year = request.form.get("year")
         swid = request.form.get("swid")
         espns2 = request.form.get("espns2")
-        #my_league = League(league_id=league, year=2024, swid= swid, espn_s2=espns2)
-        #teams = my_league.teams
         return printTeams(league, year, swid, espns2)
         
     return render_template("index.html")
@@ -26,8 +24,21 @@ def getInfo() :
 def printTeams(league, year, swid, espns2) :
     my_league = League(league_id=league, year=int(year), swid= swid, espn_s2=espns2)
     teams = my_league.teams
-    return str(teams)
+    return getTop10(my_league)
 
+def getTop10(my_league) :
+    freeAgents = my_league.free_agents()
+    ten = []
+    for player in freeAgents :
+        pts = player.avg_points
+        s = player.name
+        ten.append((pts, s))
+
+    ten.sort()
+    ten.reverse()
+
+    toRet = ten[0:10]
+    return str(toRet)
 
 
 if __name__ == "__main__":
