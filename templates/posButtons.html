@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+
+
+{% endblock %}
+
+
+
+{% block body %} 
+
+<h2>Select a Position</h2>
+<form action="{{ url_for('get_position')}}" method="post">
+    <button type="submit" name="position" value="PG">PG</button>
+    <button type="submit" name="position" value="SG">SG</button>
+    <button type="submit" name="position" value="SF">SF</button>
+    <button type="submit" name="position" value="PF">PF</button>
+    <button type="submit" name="position" value="C">C</button>
+</form>
+    
+
+{% endblock %}
