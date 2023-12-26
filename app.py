@@ -34,14 +34,15 @@ def getTop10(my_league, position) :
     for player in freeAgents :
         pts = player.avg_points
         s = player.name
+        status = player.injuryStatus
         if player.position == position or position == "ANY":
-            ten.append((pts, s))
+            ten.append((pts, s, status))
 
     ten.sort()
     ten.reverse()
 
     toRet = ten[0:10]
-    return str(toRet)
+    return formattedList(toRet)
 
 
 @app.route('/get_position', methods=["POST"])
@@ -55,6 +56,15 @@ def get_position() :
     my_league = League(league_id=league, year=int(year), swid= swid, espn_s2=espns2)
 
     return getTop10(my_league, position)
+
+def formattedList(arr) :
+    count = 1
+    s = ""
+    for item in arr :
+        s += str(count) + "." + " " + str(item) + "<br>" + "<br>"
+        count += 1
+    
+    return s
 
 if __name__ == "__main__":
     app.run(debug=True)
