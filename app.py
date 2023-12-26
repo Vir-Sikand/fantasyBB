@@ -34,7 +34,7 @@ def getTop10(my_league, position) :
     for player in freeAgents :
         pts = player.avg_points
         s = player.name
-        if player.position == position :
+        if player.position == position or position == "ANY":
             ten.append((pts, s))
 
     ten.sort()
