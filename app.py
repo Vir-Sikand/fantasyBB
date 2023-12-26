@@ -26,7 +26,7 @@ def getInfo() :
 def printTeams(league, year, swid, espns2) :
     my_league = League(league_id=league, year=int(year), swid= swid, espn_s2=espns2)
     teams = my_league.teams
-    return getTop10(my_league)
+    return str(teams)
 
 def getTop10(my_league, position) :
     freeAgents = my_league.free_agents()
