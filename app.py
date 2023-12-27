@@ -3,7 +3,7 @@ from flask import session
 from flask_sqlalchemy import SQLAlchemy
 from espn_api.basketball import League
 
-
+#OpenAI api key: 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
 
 
 app = Flask(__name__)
