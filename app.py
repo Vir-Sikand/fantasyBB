@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request
 from flask import session
 from flask_sqlalchemy import SQLAlchemy
 from espn_api.basketball import League
+from gptRec import getRec
 
 
 app = Flask(__name__)
@@ -29,18 +30,27 @@ def printTeams(league, year, swid, espns2) :
 def getTop10(my_league, position) :
     freeAgents = my_league.free_agents()
     ten = []
+    gptFeed = []
     for player in freeAgents :
         pts = player.avg_points
         s = player.name
         status = player.injuryStatus
         if player.position == position or position == "ANY":
             ten.append((pts, s, status))
+            gptFeed.append((pts, player))
 
     ten.sort()
     ten.reverse()
+    gptFeed.sort()
+    gptFeed.reverse()
+    gptFeed = gptFeed[0:10]
+
+    reccomendation = getRec(gptFeed)
 
     toRet = ten[0:10]
-    return formattedList(toRet)
+    ranking = formattedList(toRet)
+
+    return ranking + "<br>" + "<br>" + str(reccomendation)
 
 
 @app.route('/get_position', methods=["POST"])
